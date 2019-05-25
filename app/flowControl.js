@@ -11,6 +11,28 @@ define(function() {
       //
       // otherwise the function should return the number, or false if no number
       // was provided or the value provided is not a number
+
+      var isDivisibleByFive = num % 5 === 0;
+      var isDivisibleByThree = num % 3 === 0;
+
+
+      if (isDivisibleByThree && isDivisibleByFive) {
+        return 'fizzbuzz';
+      }
+
+      if (isDivisibleByThree) {
+        return 'fizz';
+      }
+
+      if (isDivisibleByFive) {
+        return 'buzz';
+      }
+
+      if (isNaN(num)) {
+        return false;
+      }
+
+     return num;
     }
   };
 });
