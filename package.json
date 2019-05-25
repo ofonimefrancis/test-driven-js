@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "node bin/serve",
-    "test": "./node_modules/mocha/bin/mocha -R spec tests/runner.js --timeout 10000"
+    "test": "./node_modules/mocha/bin/mocha -R spec tests/runner.js"
   },
   "bin": "bin/serve"
 }
