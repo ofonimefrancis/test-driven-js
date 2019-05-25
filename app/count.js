@@ -5,22 +5,20 @@ define(function () {
     count : function (start, end) {
       let timer;
 
-      function logNumber(start) {
-        console.log(start);
-      }
-
       const counting = () => {
-        start++;
+        console.log(start++);
 
         if (start <= end) {
-          timer = setTimeout(logNumber(start), 100);
+          timer = setTimeout(counting, 100);
         }
       }
 
      counting();
 
       return {
-        cancel: () => clearTimeout(timer),
+        cancel: () => {
+          timer && clearTimeout(timer);
+        }
       }
     }
   };

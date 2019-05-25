@@ -41,13 +41,6 @@ define(function() {
     },
 
     partialUsingArguments :  (fn, ...args) => (...args2) => fn(...args, ...args2),
-
-    curryIt : function(fn) {
-      return function(a) {
-        return function(b) {
-          return fn(a, b);
-        }
-      }
-    }
+    curryIt :(fn, ...args) => (fn.length <= args.length) ? fn(...args) : (...more) => curryIt(fn, ...args, ...more),
   };
 });
