@@ -22,7 +22,12 @@ define(function() {
     },
 
     removeWithoutCopy : function(arr, item) {
-      return arr.filter(ele => ele === item)
+      for (var i in arr) {
+        if (arr[i] == item) {
+          arr.splice(i, 1)
+        }
+      }
+      return arr;
     },
 
     append : function(arr, item) {
