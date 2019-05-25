@@ -12,10 +12,10 @@
     "grunt-contrib-jshint": "~0.1.0"
   },
   "devDependencies": {
-    "mocha": "1.2.x",
-    "requirejs": "1.0.x",
     "grunt-contrib-livereload": "~0.1.2",
-    "grunt-contrib-watch": "~0.4.4"
+    "grunt-contrib-watch": "~0.4.4",
+    "mocha": "^1.2.2",
+    "requirejs": "1.0.x"
   },
   "scripts": {
     "start": "node bin/serve",
