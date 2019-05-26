@@ -7,12 +7,16 @@ define([ 'jquery' ], function($) {
     },
 
     manipulateRemoteData : function(url) {
-      let result = [];
-      return fetch(url).then(response => response.json())
-        .then(data => {
-          data.people.forEach(item => result.push(item));
+      let deferred = $.Deferred();
+
+      $.ajax(url).then(function (resp) {
+        var people = resp.people.map(function (person) {
+          return person.name;
+        });
+        deferred.resolve(people.sort());
       });
-      return result.sort();
+
+      return deferred.promise();
     }
   };
 });

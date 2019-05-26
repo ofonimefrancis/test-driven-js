@@ -20,12 +20,16 @@ define(function() {
     remove : function(arr, item) {
       return arr.filter(ele => ele !== item)
     },
-
     removeWithoutCopy : function(arr, item) {
-      for (var i in arr) {
-        if (arr[i] == item) {
-          arr.splice(i, 1)
+      var data = [];
+      while (arr.length > 0) {
+        var result = arr.shift()
+        if (result !== item) {
+          data.unshift(result);
         }
+      }
+      while (data.length > 0) {
+        arr.unshift(data.shift());
       }
       return arr;
     },

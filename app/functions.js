@@ -41,6 +41,22 @@ define(function() {
     },
 
     partialUsingArguments :  (fn, ...args) => (...args2) => fn(...args, ...args2),
-    curryIt :(fn, ...args) => (fn.length <= args.length) ? fn(...args) : (...more) => curryIt(fn, ...args, ...more),
+    curryIt : function(fn) {
+      function getArgumentAccumulator(accumulatedArguments, expectedArgumentsCount) {
+        return function (currentArgument) {
+          accumulatedArguments.push(currentArgument);
+  
+          var allArgumentsProvided = accumulatedArguments.length === expectedArgumentsCount;
+  
+          if (allArgumentsProvided) {
+            return fn.apply(null, accumulatedArguments);
+          } else {
+            return getArgumentAccumulator(accumulatedArguments, expectedArgumentsCount);
+          }
+        };
+      }
+  
+      return getArgumentAccumulator([], fn.length);
+    }
   };
 });
