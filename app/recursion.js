@@ -2,10 +2,29 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 
 define(function() {
   return {
-    listFiles: function(data, dirName) {
+    listFiles: function (fileData, dirName) {
+      let result = [];
+      let data = [];
+      let self = this;
 
-    },
-
+      if(typeof fileData === 'object') {
+        fileData.files.map(function(item) {
+          result = result.concat(self.listFiles(item));
+        })
+      }
+      if(typeof fileData === 'string') {
+        result.push(fileData);
+      }
+  
+      if(arguments[1]) {
+        result.forEach(item => {
+          if(item.includes(`.${dirName}`)) {
+            data.push(item);
+          }
+        })
+      }
+      return (arguments[1]) ? data : result;
+  },
     permute: function(arr) {
       let result = [];
 
